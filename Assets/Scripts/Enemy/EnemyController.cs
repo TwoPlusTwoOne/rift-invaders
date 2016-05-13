@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    private static EnemyController enemyController;
+
+    public static EnemyController GetController()
+    {
+        return enemyController;
+    }
+
+    void Awake()
+    {
+        if (enemyController == null)
+            enemyController = this;
+        else if (enemyController != this)
+            Destroy(this);
+    }
 }

@@ -4,56 +4,71 @@ using System.Collections;
 public class GameController : MonoBehaviour
 {
 
-	int score;
-	int shield;
+    int score;
+    int shield;
 
-	private static GameController gameController;
+    [SerializeField]
+    private GameObject bigShip;
 
-	public static GameController GetController ()
-	{
-		return gameController;
-	}
+    private double spawnTimer = 0;
 
-	void Awake ()
-	{
-		if (gameController == null)
-			gameController = this;
-		else if (gameController != this)
-			Destroy (this);
-	}
+    private static GameController gameController;
+
+    public static GameController GetController()
+    {
+        return gameController;
+    }
+
+    void Update()
+    {
+        spawnTimer += Time.deltaTime;
+        if (spawnTimer > 3)
+        {
+            spawnTimer = 0;
+            SpawnController.GetController().Spawn(GridController.GetController().GetSpawnGrid(), bigShip);
+        }
+    }
+
+    void Awake()
+    {
+        if (gameController == null)
+            gameController = this;
+        else if (gameController != this)
+            Destroy(this);
+    }
 
 
-	public void ReduceShield ()
-	{
-		shield -= 5;
-	}
+    public void ReduceShield()
+    {
+        shield -= 5;
+    }
 
-	public void Spawn (GridType grid, GameObject gameObject, Tuple<int,int> pos)
-	{
-		Grid g;
-		g = GetGridByType (grid);
-		SpawnController.GetController ().Spawn (g, gameObject, pos);
-	}
+    public void Spawn(GridType grid, GameObject gameObject, Tuple<int, int> pos)
+    {
+        Grid g;
+        g = GetGridByType(grid);
+        SpawnController.GetController().Spawn(g, gameObject, pos);
+    }
 
-	public void Spawn (GridType grid, GameObject gameObject)
-	{
-		Grid g;
-		g = GetGridByType (grid);
-		SpawnController.GetController ().Spawn (g, gameObject);
-	}
+    public void Spawn(GridType grid, GameObject gameObject)
+    {
+        Grid g;
+        g = GetGridByType(grid);
+        SpawnController.GetController().Spawn(g, gameObject);
+    }
 
-	private Grid GetGridByType (GridType type)
-	{
-		switch (type) {
-		case GridType.PUp:
-			return Grid.GetPUpGrid ();
-		case GridType.Shield:
-			return Grid.GetShieldGrid ();
-		case GridType.Spawn:
-			return Grid.GetSpawnGrid ();
-			defualt:
-			return null;
-		}
-		return null;
-	}
+    private Grid GetGridByType(GridType type)
+    {
+        switch (type)
+        {
+            case GridType.PUp:
+                return GridController.GetController().GetPUpGrid();
+            case GridType.Shield:
+                return GridController.GetController().GetShieldGrid();
+            case GridType.Spawn:
+                return GridController.GetController().GetSpawnGrid();
+            default:
+                return null;
+        }
+    }
 }
