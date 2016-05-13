@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public enum ShotType{
-	Blast, Spread, Normal, Homing
+﻿namespace Assets.Scripts.Shot
+{
+    public enum ShotType{
+        Blast, Spread, Normal, Homing
+    }
 }

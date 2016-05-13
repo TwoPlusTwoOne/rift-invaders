@@ -1,8 +1,8 @@
-﻿using System;
-
-
-	public enum GridType
-	{
-		Shield, PUp, Spawn
-	}
+﻿namespace Assets.Scripts.Spawn
+{
+    public enum GridType
+    {
+        Shield, PUp, Spawn
+    }
+}
 

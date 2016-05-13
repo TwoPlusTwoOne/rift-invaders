@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿namespace Assets.Scripts.Shot
+{
+    public enum ShotSource {
 
-public enum ShotSource {
-
-	Player, Turret, Enemy
+        Player, Turret, Enemy
+    }
 }

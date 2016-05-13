@@ -1,23 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-
-public class Tank : MonoBehaviour
+namespace Assets.Scripts.Enemy
 {
-
-    [SerializeField]
-    private float speed;
-
-    void Update()
+    public class Tank : MonoBehaviour
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - speed * Time.deltaTime);
-    }
 
-    void OnTriggerEnter(Collider c)
-    {
-        if (c.gameObject.tag.Equals("ShieldTile"))
+        [SerializeField]
+        private float speed;
+
+        void Update()
         {
-            Destroy(this.gameObject);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - speed * Time.deltaTime);
+        }
+
+        void OnTriggerEnter(Collider c)
+        {
+            if (c.gameObject.tag.Equals("ShieldTile"))
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

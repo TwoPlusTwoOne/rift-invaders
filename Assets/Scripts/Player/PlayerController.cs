@@ -1,27 +1,28 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class PlayerController : MonoBehaviour
+namespace Assets.Scripts.Player
 {
+    public class PlayerController : MonoBehaviour
+    {
 
-	private Player player;
+        private Player player;
 
-	private static PlayerController playerController;
+        private static PlayerController playerController;
 
-	public static PlayerController GetController ()
-	{
-		return playerController;
-	}
+        public static PlayerController GetController ()
+        {
+            return playerController;
+        }
 
-	void Awake ()
-	{
-		if (playerController == null)
-			playerController = this;
-		else if (playerController != this)
-			Destroy (this);
-	}
+        void Awake ()
+        {
+            if (playerController == null)
+                playerController = this;
+            else if (playerController != this)
+                Destroy (this);
+        }
 
-	/*public void PlaceTurret (Turret turret)
+        /*public void PlaceTurret (Turret turret)
 	{
 		RaycastHit hit;
 		if (Physics.Raycast (player.transform.position, player.transform.forward, out hit)) {
@@ -30,4 +31,5 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 	}*/
+    }
 }
