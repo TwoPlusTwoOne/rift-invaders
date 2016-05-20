@@ -43,5 +43,10 @@ namespace Assets.Scripts.PowerUp
             }
         
         }
+
+        public PowerUpType Type()
+        {
+            return type;
+        }
     }
 }

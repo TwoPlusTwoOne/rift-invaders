@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Shot;
+using Assets.Scripts.PowerUp;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
@@ -13,33 +14,38 @@ namespace Assets.Scripts.Player
         private FirstPersonController fpc;
 
         private ShotType shotType;
-        /*private Turret turret;
+        private Turret turret;
 
 
-	void Update() {
-		if (Input.GetKey ("turret")) {
-			PlaceTurret ();
-		}
-	}*/
+        void Update()
+        {
+            if (Input.GetKey("turret"))
+            {
+                PlaceTurret();
+            }
+        }
 
 
-        /*public void PowerUp(PowerUp pup) {
-		if (pup == PowerUp.Blast) {
-			shotType = ShotType.Blast;
-		}
-	}
+        public void PowerUp(PowerUp.PowerUp pup)
+        {
+            if (pup.Type() == PowerUpType.BlazeShot)
+            {
+                shotType = ShotType.Blast;
+            }
+        }
 
-	public void ReceiveTurrent(Turret turret){
-		this.turret = turret;
-	}
+        public void ReceiveTurrent(Turret turret)
+        {
+            this.turret = turret;
+        }
 
-	public void PlaceTurret() 
-	{
-		if (turret == null)
-			return;
-		PlayerController.GetController ().PlaceTurret (turret);
-		turret = null;
-	}*/
+        public void PlaceTurret()
+        {
+            if (turret == null)
+                return;
+            PlayerController.GetController().PlaceTurret(turret);
+            turret = null;
+        }
     }
 }
 
