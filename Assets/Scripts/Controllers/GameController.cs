@@ -8,6 +8,7 @@ namespace Assets.Scripts.Controllers
 
         int score;
         int shield;
+        int lifes;
 
        /* [SerializeField]
         private GameObject bigShip;*/
@@ -79,6 +80,17 @@ namespace Assets.Scripts.Controllers
                 default:
                     return null;
             }
+        }
+
+        public void ReduceLife()
+        {
+            lifes--;
+            if (lifes == -1) EndGame();
+        }
+
+        private void EndGame()
+        {
+            // todo
         }
     }
 }

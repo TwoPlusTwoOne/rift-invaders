@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Controllers;
+using UnityEngine;
+using Assets.Scripts.Shot;
+using Assets.Scripts.Spawn;
 
 namespace Assets.Scripts.Enemy
 {
@@ -8,6 +11,9 @@ namespace Assets.Scripts.Enemy
         [SerializeField] private float speed;
         [SerializeField] private bool canShoot;
         [SerializeField] private int lifes;
+
+        [SerializeField] private Transform shotSpawn;
+        [SerializeField] private Shot.Shot shot;
 
         private float shootTime;
 
@@ -27,7 +33,8 @@ namespace Assets.Scripts.Enemy
 
         private void Shoot()
         {
-            
+            Shot.Shot currentShot = Instantiate(shot.gameObject).GetComponent<Shot.Shot>();
+            currentShot.SetDirection(transform.position);
         }
 
         void OnTriggerEnter(Collider c)
@@ -36,6 +43,15 @@ namespace Assets.Scripts.Enemy
             {
                 EnemyController.GetController().OnShipTriggerShield();
                 Destroy(this.gameObject);
+            }
+        }
+
+        public void ReduceLife()
+        {
+            lifes--;
+            if (lifes == 0)
+            {
+                Destroy(gameObject);
             }
         }
     }
