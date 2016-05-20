@@ -34,10 +34,10 @@ namespace Assets.Scripts.PowerUp
         
         }
 
-        internal PowerUpType GetType()
+       
+        public PowerUpType Type()
         {
             return type;
-
         }
     }
 }

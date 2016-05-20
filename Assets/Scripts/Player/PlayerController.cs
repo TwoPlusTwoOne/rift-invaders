@@ -35,5 +35,16 @@ namespace Assets.Scripts.Player
         internal void PUpObtained(PowerUpType type)
         {
         }
+        public void PlaceTurret(Turret turret)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(player.transform.position, player.transform.forward, out hit))
+            {
+                if (hit.collider.tag.Equals("tile"))
+                {
+                    //GameController.GetController ().Spawn (GridType.Shield, turret, (hit.collider.gameObject as Tile).GetPos ());
+                }
+            }
+        }
     }
 }

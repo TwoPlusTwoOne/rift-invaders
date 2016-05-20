@@ -38,7 +38,7 @@ namespace Assets.Scripts.PowerUp
             if (turretTimer >= 20)
             {
                 turretTimer = 0;
-                Player.PlayerController.GetController().PUpObtained(GetTurretPowerUp().GetType());
+                Player.PlayerController.GetController().PUpObtained(GetTurretPowerUp().Type());
             }
 
         }
@@ -53,6 +53,5 @@ namespace Assets.Scripts.PowerUp
             return turretPUps[Random.Range(0, turretPUps.Length)];
         }
     }
-
     
 }

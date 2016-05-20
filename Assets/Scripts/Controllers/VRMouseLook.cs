@@ -31,7 +31,10 @@ public class VRMouseLook : MonoBehaviour
     void Start()
     {
         lr = gameObject.AddComponent<LineRenderer>();
-        lr.useWorldSpace = true;
+        lr.SetWidth(0.04f, 0.04f);
+        Material whiteDiffuseMat = new Material(Shader.Find("Unlit/Texture"));
+        lr.material = whiteDiffuseMat;
+        //lr.useWorldSpace = true;
     }
 
     void Awake()
@@ -99,10 +102,12 @@ public class VRMouseLook : MonoBehaviour
 
         if (Physics.Raycast(transform.position, fwd, out hit, Mathf.Infinity, layerMask))
         {
-            Debug.Log("There is something in front of the object!");
-            Debug.Log(hit.collider.gameObject.name);
+            //Debug.Log("There is something in front of the object!");
+            //Debug.Log(hit.collider.gameObject.name);
             DrawCursor(hit.point, hit.normal);
-            lr.SetPositions(new Vector3[] { transform.position, hit.point });
+            lr.SetPosition(0, transform.position);
+            lr.SetPosition(1, hit.point);
+            //lr.SetPositions(new Vector3[] { transform.position, hit.point });
             lr.SetColors(Color.red, Color.red);
         }
         else {
@@ -110,17 +115,13 @@ public class VRMouseLook : MonoBehaviour
             lr.SetPositions(new Vector3[] { transform.position, fwd * 10000 });
             lr.SetColors(Color.blue, Color.red);
         }
-
-
-        Debug.DrawLine(transform.position, fwd * 20, Color.red);
-
     }
 
     private void DrawCursor(Vector3 position, Vector3 normal)
     {
         //GameObject reticle = GameObject.Instantiate(crossHair, position - gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-        Debug.Log("Hit position: " + "x: " + position.x + "y: " + position.y + "z: " + position.z);
-        Debug.Log("GameObject position: " + "x: " + transform.position.x + "y: " + transform.position.y + "z: " + transform.position.z);
+        //Debug.Log("Hit position: " + "x: " + position.x + "y: " + position.y + "z: " + position.z);
+        //Debug.Log("GameObject position: " + "x: " + transform.position.x + "y: " + transform.position.y + "z: " + transform.position.z);
         //crossHair.transform.position = new Vector3(transform.forward.x, transform.forward.y, position.z);
         crossHair.transform.position = position - new Vector3(0, 0, 1f);
         crossHair.transform.rotation = gameObject.transform.rotation;
