@@ -31,5 +31,9 @@ namespace Assets.Scripts.Player
 			}
 		}
 	}*/
+
+        internal void PUpObtained(PowerUpType type)
+        {
+        }
     }
 }

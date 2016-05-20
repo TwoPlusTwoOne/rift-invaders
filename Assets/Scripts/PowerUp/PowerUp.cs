@@ -18,30 +18,26 @@ namespace Assets.Scripts.PowerUp
         {
             Shot.Shot shot = c.GetComponent<Shot.Shot>();
             if (shot == null) return;
-            string currentTag = c.gameObject.tag;
-            if (currentTag.Equals("PUpTile") || currentTag.Equals("SpawnTile")) return;
             switch (shot.GetSource())
             {
-                // todo
                 case ShotSource.Player:
-                    if (currentTag.Equals("shield") || currentTag.Equals("Shot") || currentTag.Equals("Turret")) return;
-                    if (currentTag.Equals("Enemy")) c.GetComponent<Enemy.Enemy>().ReduceLife();
+                    Player.PlayerController.GetController().PUpObtained(type);
                     Destroy(this.gameObject);
                     break;
                 case ShotSource.Turret:
-                    if (currentTag.Equals("shield") || currentTag.Equals("Shot")) return;
-                    Destroy(this.gameObject);
-                    break;
+                    return;
                 case ShotSource.Enemy:
-                    if (currentTag.Equals("Enemy") || currentTag.Equals("Shot") || currentTag.Equals("PUpTile")) return;
-                    if (currentTag.Equals("ShieldTile")) GameController.GetController().ReduceShield();
-                    else if (currentTag.Equals("Player")) GameController.GetController().ReduceLife();
-                    Destroy(this.gameObject);
-                    break;
+                    return;
                 default:
                     break;
             }
         
+        }
+
+        internal PowerUpType GetType()
+        {
+            return type;
+
         }
     }
 }

@@ -56,7 +56,7 @@ namespace Assets.Scripts.Shot
                     case ShotSource.Enemy:
                         if (currentTag.Equals("Enemy") || currentTag.Equals("Shot") || currentTag.Equals("PUpTile")) return;
                         if(currentTag.Equals("ShieldTile")) GameController.GetController().ReduceShield();
-                        else if(currentTag.Equals("Player")) GameController.GetController().ReduceLife();
+                        else if(currentTag.Equals("Player")) GameController.GetController().ReduceShield();
                         Destroy(this.gameObject);
                         break;
                 default:

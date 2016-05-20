@@ -7,7 +7,9 @@ namespace Assets.Scripts.PowerUp
 
         private static PUpController pUpController;
         [SerializeField] private float spawnTimer;
-        [SerializeField] private GameObject[] popUps;
+        [SerializeField] private float turretTimer;
+        [SerializeField] private PowerUp[] popUps;
+        [SerializeField] private PowerUp[] turretPUps;
 
 
         public static PUpController GetController()
@@ -25,17 +27,30 @@ namespace Assets.Scripts.PowerUp
 
         void Update()
         {
+            turretTimer += Time.deltaTime;
             spawnTimer += Time.deltaTime;
-            if (spawnTimer > 1)
+            if (spawnTimer > 10)
             {
                 spawnTimer = 0;
-                SpawnController.GetController().Spawn(GridController.GetController().GetPUpGrid(), GetPopUp());
+                SpawnController.GetController().Spawn(GridController.GetController().GetPUpGrid(), GetPowerUp().gameObject);
             }
+
+            if (turretTimer >= 20)
+            {
+                turretTimer = 0;
+                Player.PlayerController.GetController().PUpObtained(GetTurretPowerUp().GetType());
+            }
+
         }
 
-        private GameObject GetPopUp()
+        private PowerUp GetPowerUp()
         {
             return popUps[Random.Range(0, popUps.Length)];
+        }
+
+        private PowerUp GetTurretPowerUp()
+        {
+            return turretPUps[Random.Range(0, turretPUps.Length)];
         }
     }
 
